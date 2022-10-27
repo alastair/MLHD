@@ -49,7 +49,7 @@ tables_func_name = {
     "mbc_combined.parquet": mb.get_mbc_combined
 }
 
-if __name__ == '__main__':
+def generate_tables():
     start = monotonic()
     for table_name, table_func in tables_func_name.items():
         gen_table(table_name, table_func)
@@ -57,3 +57,6 @@ if __name__ == '__main__':
     end = monotonic()
 
     console.log(f"Tables generated in {round(end-start, 2)} seconds")
+
+if __name__ == '__main__':
+    generate_tables()

@@ -23,7 +23,7 @@ LOG_WRITE_PATH = ENV['LOG_WRITE_PATH']
 LOG_EPOCH = 1
 
 console.log("Generating MLHD Paths...")
-MLHD_FILES = io.generate_paths(MLHD_ROOT)
+MLHD_FILES = io.generate_paths(config.MLHD_ROOT)
 
 with console.status("Loading MB Track Tables...") as stat:
     # MB_track_set, MB_track_redir_set = io.get_track_sets()

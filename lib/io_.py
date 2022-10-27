@@ -10,21 +10,6 @@ from pyarrow import CompressedOutputStream as COS
 from numpy import nan
 import config
 
-# def get_config():
-#     """Function to load the config file into environment variable"""	
-#     with open('config.json', 'r') as f:
-#         ENV_VAR = json.load(f)
-    
-#     return ENV_VAR
-
-# ENV = get_config()
-
-def get_config():
-    ENV = {name: values for name, values in vars(config).items() if not name.startswith("__")}
-    return ENV
-
-ENV = get_config()
-
 
 def generate_paths(MLHD_ROOT):
     """Function to generate a list of paths to MLHD files"""	
@@ -172,7 +157,7 @@ def write_frame(df_input, original_path):
     Function to write a dataframe to a csv file using pyarrow
     """
     # Replace MLHD_ROOT with path to new MLHD folder.
-    write_path = original_path.replace(ENV["MLHD_ROOT"], ENV["WRITE_ROOT"])
+    write_path = original_path.replace(config.MLHD_ROOT, config.WRITE_ROOT)
     write_path = write_path.replace('txt.gz', 'csv.zst')
     
     # print(write_path)
@@ -191,7 +176,7 @@ def write_frame_pandas(df_input, original_path):
     Function to write a dataframe to a csv file
     """
     # Replace MLHD_ROOT with path to new MLHD folder.
-    write_path = original_path.replace(ENV["MLHD_ROOT"], ENV["WRITE_ROOT"])
+    write_path = original_path.replace(config.MLHD_ROOT, config.WRITE_ROOT)
     write_path = write_path.replace('txt.gz', 'csv.zst')
     
     # print(write_path)
@@ -251,7 +236,7 @@ def get_track_sets_pickled():
     """
     Function to load pickled track sets
     """
-    with open(ENV['PICKLE_PATH'], 'rb') as f:
+    with open(config.PICKLE_PATH, 'rb') as f:
         MB_track_set, MB_track_redir_set = pickle.load(f)
     
     return (MB_track_set, MB_track_redir_set)
