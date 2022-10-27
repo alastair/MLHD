@@ -25,13 +25,8 @@ console.clear()
 ### Getting started ###
 ####
 
-io.generate_folders()               # Generate folders to write all outputs (as specified in config.py)
-master_start = monotonic()          # Start the master timer
-
 OUTPUT_LOG = {}                     # Log Progress
 TIME_LOGS = {}                      # Logs time taken for each step
-
-console.log("Loading config...")
 
 LOG_WRITE_PATH = join(config.LOG_WRITE_ROOT, clean_master_config.LOG_FILE_NAME)
 
@@ -195,4 +190,9 @@ def main():
 
 
 if __name__ == "__main__":
+    io.generate_folders()               # Generate folders to write all outputs (as specified in config.py)
+
+    master_start = monotonic()          # Start the master timer
+    load_data()
+
     main()
